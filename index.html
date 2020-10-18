@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estilos.css" />
     <title>Gestión de Series</title>
-</head>
-<body>
-    <header>
-        <h1>Gestión de Series</h1>
+  </head>
+
+  <body>
+    <header
+      class="header border-radius py-2 text-center font-ligth border-radius-tl border-radius-br"
+    >
+      <h1>Gestión de Series</h1>
     </header>
-    <aside>
-        <nav>
-            <ul>
-                <li>Series</li>
-                <li>Opiniones</li>
-                <li>Estadística</li>
-            </ul>
-        </nav>
-    </aside>
-    <main>
-        <section>
-            <h2>Manejo de Series</h2>
-        </section>
-        <section>
-            <h2>Datos sobre opiniones de visualización</h2>
-            <h3>Opiniones ingresadas de la serie</h3>
-        </section>
-        <section>
-            <h2>Informacion estadística</h2>
-        </section>
+    <nav class="nav w-100 w-tablet-20 float-left">
+      <ul>
+        <li>
+          <a class="bg-gradient-secondary border-radius-br" href="#series">Series</a>
+        </li>
+        <li>
+          <a class="bg-gradient-tertiary border-radius-br" href="#opiniones">Opiniones</a>
+        </li>
+        <li>
+          <a class="bg-gradient-primary border-radius-br" href="#estadisticas">Estadística</a>
+        </li>
+      </ul>
+    </nav>
+    <main class="w-100 w-tablet-80 float-left">
+      <section id="series" class="bg-gradient-secondary border-radius-br px-1">
+        <h2>Manejo de Series</h2>
+      </section>
+      <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
+        <h2>Datos sobre opiniones de visualización</h2>
+        <h3>Opiniones ingresadas de la serie</h3>
+      </section>
+      <section id="estadisticas" class="bg-gradient-primary border-radius-br px-1">
+        <h2>Informacion estadística</h2>
+      </section>
     </main>
-    <footer>Cátedra de Programación - Programación 1 - 2do semestre 2020</footer>
-</body>
+    <footer
+      class="footer border-radius py-2 text-center font-ligth border-radius-tl border-radius-br clear"
+    >
+      <p>Cátedra de Programación - Programación 1 - 2do semestre 2020</p>
+    </footer>
+  </body>
 </html>
