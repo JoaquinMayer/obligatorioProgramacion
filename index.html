@@ -13,6 +13,7 @@
     >
       <h1>Gestión de Series</h1>
     </header>
+
     <nav class="nav w-100 w-tablet-20 float-left">
       <ul>
         <li>
@@ -26,18 +27,88 @@
         </li>
       </ul>
     </nav>
+
     <main class="w-100 w-tablet-80 float-left">
       <section id="series" class="bg-gradient-secondary border-radius-br px-1">
-        <h2>Manejo de Series</h2>
+        <h2 class="py-10">Manejo de Series</h2>
       </section>
+
       <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
-        <h2>Datos sobre opiniones de visualización</h2>
-        <h3>Opiniones ingresadas de la serie</h3>
+        <h2 class="py-10">Datos sobre opiniones de visualización</h2>
+        <p>Serie</p>
+        <select id="series" name="series">
+          <option value="friends">Friends</option>
+          <option value="pinkyCerebro">Pinky y Cerebro</option>
+          <option value="superman">Superman</option>
+        </select>
+        <p>Temporada</p>
+        <input type="text">
+        <p>Capitulo</p>
+        <input type="text">
+        <p>Puntaje (1-10)</p>
+        <input type="range" id="puntaje" name="puntaje" min="1" max="10">
+        <p>Comentarios</p>
+        <textarea rows="4" cols="50" name="comentarios"></textarea>
+        
+        <div class="py-10">
+          <input type="button" value="Agregar/Actualizar"> 
+          <input type="button" value="Reset"> 
+        </div>
+
+        <h3 class="py-10">Opiniones ingresadas de la serie</h3>
+        <ul class="px-25">
+          <li>Temp 1: Cap 4: Puntaje: 10 El mejor capitulo, casi conquistan el mundo!</li>
+        </ul>
       </section>
+
       <section id="estadisticas" class="bg-gradient-primary border-radius-br px-1">
-        <h2>Informacion estadística</h2>
+        <h2 class="py-10">Informacion estadística</h2>
+        <p class="py-10">Series sin opiniones</p>
+        <ul class="px-25">
+          <li>Friends-Comedia de amigos (Temporadas: 12, capitulos: 8) </li>
+          <li>Superman-El hombre de acero (Temporadas: 14, capitulos: 15) </li>
+        </ul>
+
+        <p class="py-10">Top-3 Series con la maxima cantidad de opiniones</p>
+        <ul class="px-25">
+          <li>Pinky y Cerebro-Dibujo de dos ratones (Temporadas: 15, capitulos: 8) </li>
+        </ul>
+
+        <p class="py-10">Informacion general</p>
+        <p>Orden:</p>
+        <input type="radio" id="nombre" name="orden" value="nombre">
+        <label for="nombre">Nombre de la serie</label>
+        <input type="radio" id="cantidad" name="orden" value="cantidad">
+        <label for="cantidad">Cantidad de opiniones decreciente</label>
+        
+        <div class="py-10">
+          <p class="text-center w-60">Informacion detallada</p>
+          <table class="table w-60">
+            <tr>
+              <th class="th">Serie</th>
+              <th class="th">Cantidad de opiniones</th>
+              <th class="th">Promedio general</th>
+            </tr>
+            <tr>
+              <td class="td">Friends</td>
+              <td class="td">0</td>
+              <td class="td"></td>
+            </tr>
+            <tr>
+              <td class="td">Pinky y Cerebro</td>
+              <td class="td">1</td>
+              <td class="td">10</td>
+            </tr>
+            <tr>
+              <td class="td">Superman</td>
+              <td class="td">0</td>
+              <td class="td"></td>
+            </tr>
+          </table>
+        </div>
       </section>
     </main>
+
     <footer
       class="footer border-radius py-2 text-center font-ligth border-radius-tl border-radius-br clear"
     >

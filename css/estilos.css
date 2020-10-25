@@ -21,8 +21,17 @@
 .py-2 {
   padding: 25px 0;
 }
+
+.py-10 {
+  padding: 10px 0;
+}
+
 .px-1 {
   padding: 0 15px;
+}
+
+.px-25 {
+  padding: 0 25px;
 }
 
 .text-center {
@@ -51,6 +60,10 @@
 
 .bg-gradient-tertiary {
   background: linear-gradient(to right, #fff, var(--tertiary-color));
+}
+
+.w-60 {
+  width: 60%;
 }
 
 .w-100 {
@@ -89,4 +102,14 @@
 
 .footer {
   background-color: var(--primary-color);
+}
+
+.table {
+  border: 1px solid black;
+}
+
+.th, .td {
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
 }
