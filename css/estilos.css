@@ -113,3 +113,11 @@
   border: 1px solid black;
   text-align: center;
 }
+
+input[type="number"] {
+  width: 45px;
+}
+
+input[type="button"] {
+  padding: 0 5px;
+}

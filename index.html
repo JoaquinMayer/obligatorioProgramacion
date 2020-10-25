@@ -31,28 +31,45 @@
     <main class="w-100 w-tablet-80 float-left">
       <section id="series" class="bg-gradient-secondary border-radius-br px-1">
         <h2 class="py-10">Manejo de Series</h2>
+        <form action="#">
+          <label for="nombreSerie">Nombre</label><br>
+          <input type="text" name="nombreSerie" id="nombreSerie" placeholder="Nombre" /><br>
+          <label for="descripcionSerie">Descripción</label><br>
+          <input type="text" name="descripcionSerie" id="descripcionSerie" placeholder="Descripción" /><br>
+          <label for="cantidadTemp">Cantidad de temporadas</label><br>
+          <input type="number" name="cantidadTemp" id="cantidadTemp" min="1"/><br>
+          <label for="cantidadCap">Capitulos por temporada</label><br>
+          <input type="number" name="cantidadCap" id="cantidadCap" min="1" /><br>
+          <div class="py-10">
+            <input type="button" value="Agregar/Actualizar" />
+            <input type="button" value="Reset" />
+            <input type="button" value="Previo" />
+            <input type="button" value="Siguiente" />
+          </div>
+          <a href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer"><img src="./img/imdb-logo.jpg" alt="logo imdn" width="75"></a>
+        </form>
       </section>
 
       <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
         <h2 class="py-10">Datos sobre opiniones de visualización</h2>
         <p>Serie</p>
-        <select id="series" name="series">
+        <select id="opcionesSeries" name="opcionesSeries">
           <option value="friends">Friends</option>
           <option value="pinkyCerebro">Pinky y Cerebro</option>
           <option value="superman">Superman</option>
         </select>
         <p>Temporada</p>
-        <input type="text">
+        <input type="text" />
         <p>Capitulo</p>
-        <input type="text">
+        <input type="text" />
         <p>Puntaje (1-10)</p>
-        <input type="range" id="puntaje" name="puntaje" min="1" max="10">
+        <input type="range" id="puntaje" name="puntaje" min="1" max="10" />
         <p>Comentarios</p>
         <textarea rows="4" cols="50" name="comentarios"></textarea>
-        
+
         <div class="py-10">
-          <input type="button" value="Agregar/Actualizar"> 
-          <input type="button" value="Reset"> 
+          <input type="button" value="Agregar/Actualizar" />
+          <input type="button" value="Reset" />
         </div>
 
         <h3 class="py-10">Opiniones ingresadas de la serie</h3>
@@ -65,22 +82,22 @@
         <h2 class="py-10">Informacion estadística</h2>
         <p class="py-10">Series sin opiniones</p>
         <ul class="px-25">
-          <li>Friends-Comedia de amigos (Temporadas: 12, capitulos: 8) </li>
-          <li>Superman-El hombre de acero (Temporadas: 14, capitulos: 15) </li>
+          <li>Friends-Comedia de amigos (Temporadas: 12, capitulos: 8)</li>
+          <li>Superman-El hombre de acero (Temporadas: 14, capitulos: 15)</li>
         </ul>
 
         <p class="py-10">Top-3 Series con la maxima cantidad de opiniones</p>
         <ul class="px-25">
-          <li>Pinky y Cerebro-Dibujo de dos ratones (Temporadas: 15, capitulos: 8) </li>
+          <li>Pinky y Cerebro-Dibujo de dos ratones (Temporadas: 15, capitulos: 8)</li>
         </ul>
 
         <p class="py-10">Informacion general</p>
         <p>Orden:</p>
-        <input type="radio" id="nombre" name="orden" value="nombre">
+        <input type="radio" id="nombre" name="orden" value="nombre" />
         <label for="nombre">Nombre de la serie</label>
-        <input type="radio" id="cantidad" name="orden" value="cantidad">
+        <input type="radio" id="cantidad" name="orden" value="cantidad" />
         <label for="cantidad">Cantidad de opiniones decreciente</label>
-        
+
         <div class="py-10">
           <p class="text-center w-60">Informacion detallada</p>
           <table class="table w-60">
