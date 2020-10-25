@@ -38,11 +38,11 @@
         <p>Serie</p>
         <select id="series" name="series">
           <option value="friends">Friends</option>
-          <option value="pinkyCerebro">Pinky y Cerebro</option>
+          <option value="pinkyCerebro" selected>Pinky y Cerebro</option>
           <option value="superman">Superman</option>
         </select>
         <p>Temporada</p>
-        <input type="text">
+        <input type="number">
         <p>Capitulo</p>
         <input type="text">
         <p>Puntaje (1-10)</p>
@@ -76,14 +76,14 @@
 
         <p class="py-10">Informacion general</p>
         <p>Orden:</p>
-        <input type="radio" id="nombre" name="orden" value="nombre">
+        <input type="radio" id="nombre" name="orden" value="nombre" checked>
         <label for="nombre">Nombre de la serie</label>
         <input type="radio" id="cantidad" name="orden" value="cantidad">
         <label for="cantidad">Cantidad de opiniones decreciente</label>
         
         <div class="py-10">
-          <p class="text-center w-60">Informacion detallada</p>
-          <table class="table w-60">
+          <p class="text-center w-80">Informacion detallada</p>
+          <table class="table w-80">
             <tr>
               <th class="th">Serie</th>
               <th class="th">Cantidad de opiniones</th>
