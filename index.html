@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/estilos.css" />
     <title>Gestión de Series</title>
+    <meta name="description" content="Sitio web para registro de series televisivas, opinion de distintos capítulos de las temporadas y estadisticas">
   </head>
 
   <body>
@@ -31,11 +32,28 @@
     <main class="w-100 w-tablet-80 float-left">
       <section id="series" class="bg-gradient-secondary border-radius-br px-1">
         <h2 class="py-10">Manejo de Series</h2>
+        <form action="#">
+          <label for="nombreSerie">Nombre</label><br>
+          <input type="text" name="nombreSerie" id="nombreSerie" placeholder="Nombre" /><br>
+          <label for="descripcionSerie">Descripción</label><br>
+          <input type="text" name="descripcionSerie" id="descripcionSerie" placeholder="Descripción" /><br>
+          <label for="cantidadTemp">Cantidad de temporadas</label><br>
+          <input type="number" name="cantidadTemp" id="cantidadTemp" min="1"/><br>
+          <label for="cantidadCap">Capitulos por temporada</label><br>
+          <input type="number" name="cantidadCap" id="cantidadCap" min="1" /><br>
+          <div class="py-10">
+            <input type="button" value="Agregar/Actualizar" />
+            <input type="button" value="Reset" />
+            <input type="button" value="Previo" />
+            <input type="button" value="Siguiente" />
+          </div>
+          <a href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer"><img src="./img/imdb-logo.jpg" alt="logo imdn" width="75"></a>
+        </form>
       </section>
 
       <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
         <h2 class="py-10">Datos sobre opiniones de visualización</h2>
-        
+       
         <form action="#">
           <label for="series" class="block">Serie</label>
           <select id="series" name="series">
@@ -57,7 +75,7 @@
             <input type="button" value="Reset"> 
           </div>
         </form>
-        
+
         <h3 class="py-10">Opiniones ingresadas de la serie</h3>
         <ul class="px-25">
           <li>Temp 1: Cap 4: Puntaje: 10 El mejor capitulo, casi conquistan el mundo!</li>
@@ -83,7 +101,7 @@
         <label for="nombre">Nombre de la serie</label>
         <input type="radio" id="cantidad" name="orden" value="cantidad">
         <label for="cantidad">Cantidad de opiniones decreciente</label>
-        
+
         <div class="py-10">
           <p class="text-center w-80">Informacion detallada</p>
           <table class="table w-80">
