@@ -15,14 +15,16 @@ function agregarSerie(event) {
     let cantTemporadas = document.getElementById('cantidadTemp').value
     let cantidadCap = document.getElementById('cantidadCap').value
 
-    if (!sistema.chequearSerie(nombreSerie)) {
+    let chequearSerie = sistema.chequearSerie(nombreSerie)
+    if (chequearSerie == -1) {
         let urlImdb = buildUrlImdb(nombreSerie)
         let serie = new Serie(nombreSerie, descripcion, cantTemporadas, cantidadCap, urlImdb)
         sistema.agregarSerie(serie)
     } else {
-        sistema.series[0].descripcion = 'Holaaa'
+        sistema.series[chequearSerie].descripcion = descripcion
+        sistema.series[chequearSerie].cantTemporadas = cantTemporadas
+        sistema.series[chequearSerie].cantidadCap = cantidadCap
     }
-
 }
 
 function buildUrlImdb(nombre) {

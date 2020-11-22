@@ -5,11 +5,10 @@ class Sistema {
 
     agregarSerie(serie) {
         this.series.push(serie)
-        console.log(this.series);
     }
 
     chequearSerie(nombre) {
-        return this.series.some((serie) =>
+        return this.series.findIndex((serie) =>
             serie.nombre.toLowerCase() == nombre.toLowerCase()
         )
     }
