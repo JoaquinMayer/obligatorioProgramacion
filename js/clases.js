@@ -8,7 +8,7 @@ class Sistema {
     }
 
     chequearSerie(nombre) {
-        return this.series.some((serie) =>
+        return this.series.findIndex((serie) =>
             serie.nombre.toLowerCase() == nombre.toLowerCase()
         )
     }
