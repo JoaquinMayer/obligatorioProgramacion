@@ -4,6 +4,7 @@ var sistema = new Sistema()
 
 function inicio() {
     document.forms['formSerie'].addEventListener('submit', agregarSerie)
+    document.forms['formOpinion'].addEventListener('submit', agregarOpinion)
     document.getElementById('nombreSerie').addEventListener('keyup', updateUrlIMDB)
     mostrarSeccion('series');
 }
@@ -43,7 +44,7 @@ function mostrarSeccion(nombre) {
     const secciones = ['series', 'opiniones', 'estadisticas'];
 
     if (nombre == secciones[1]) {
-        cargarOpinionesSelect();
+        cargarSeries();
     }
 
     secciones.forEach(el => {
@@ -53,7 +54,7 @@ function mostrarSeccion(nombre) {
 
 }
 
-function cargarOpinionesSelect() {
+function cargarSeries() {
     let optionList = document.getElementById('opcionesSeries');
 
     let i, listLength = optionList.options.length - 1;
@@ -70,4 +71,46 @@ function cargarOpinionesSelect() {
             new Option(option.nombre, option.nombre, option.selected)
         )
     );
+}
+
+function cargarSerieInformacion() {
+
+    const nombreSerie = document.getElementById("opcionesSeries").value;
+
+    if (nombreSerie && sistema.chequearSerie(nombreSerie)) {
+        serie = sistema.seriePorNombre(nombreSerie);
+
+        let temporadas = document.getElementById("temporada");
+        temporadas.setAttribute("max", serie.cantTemporadas);
+
+        let capitulos = document.getElementById("capitulo");
+        capitulos.setAttribute("max", serie.cantidadCap);
+
+        let opinionList = document.getElementById('opinionesSeries');
+
+        opinionList.innerHTML = '';
+
+        serie.opiniones.forEach(opinion => {
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(`Temp: ${opinion.temporada} Cap: ${opinion.capitulo} Puntaje: ${opinion.puntaje}. ${opinion.comentarios}`));
+            opinionList.appendChild(li);
+        });
+    }
+}
+
+function agregarOpinion(event) {
+    event.preventDefault()
+    let nombreSerie = document.getElementById("opcionesSeries").value;
+    let temporada = document.getElementById('temporada').value;
+    let capitulo = document.getElementById('capitulo').value;
+    let puntaje = document.getElementById('puntaje').value;
+    let comentarios = document.getElementById('comentarios').value;
+
+    if (nombreSerie && sistema.chequearSerie(nombreSerie)) {
+        serie = sistema.seriePorNombre(nombreSerie);
+        const opinion = new Opinion(nombreSerie, temporada, capitulo, puntaje, comentarios);
+
+        serie.agregarOpinion(opinion);
+        cargarSerieInformacion();
+    }
 }

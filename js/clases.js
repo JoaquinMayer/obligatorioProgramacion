@@ -5,13 +5,20 @@ class Sistema {
 
     agregarSerie(serie) {
         this.series.push(serie)
-        console.log(this.series);
     }
 
     chequearSerie(nombre) {
         return this.series.some((serie) =>
             serie.nombre.toLowerCase() == nombre.toLowerCase()
         )
+    }
+
+    seriePorNombre(nombre) {
+        let result = this.series.find(obj => {
+            return obj.nombre === nombre
+        })
+
+        return result;
     }
 }
 
@@ -26,7 +33,21 @@ class Serie {
     }
 
     agregarOpinion(opinion) {
-        this.opinion.push(opinion)
+
+        const idxOpinion = this.chequearOpinion(opinion.temporada, opinion.capitulo);
+        if (idxOpinion == -1) {
+            this.opiniones.push(opinion);
+        } else {
+            this.opiniones[idxOpinion].puntaje = opinion.puntaje;
+            this.opiniones[idxOpinion].comentarios = opinion.comentarios;
+        }
+    }
+
+    chequearOpinion(temporada, capitulo) {
+        return this.opiniones.findIndex(opinion =>
+            opinion.temporada == temporada &&
+            opinion.capitulo == capitulo
+        )
     }
 }
 

@@ -57,28 +57,27 @@
     <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
       <h2 class="py-10">Datos sobre opiniones de visualización</h2>
 
-      <form action="#">
+      <form id="formOpinion">
         <label for="opcionesSeries" class="block">Serie</label>
-        <select id="opcionesSeries" name="opcionesSeries">
+        <select id="opcionesSeries" name="opcionesSeries" onchange="cargarSerieInformacion()">
         </select>
         <label for="temporada" class="block">Temporada</label>
         <input class="number" id="temporada" type="number" min="1" />
         <label for="capitulo" class="block">Capítulo</label>
         <input class="number" id="capitulo" type="number" min="1" />
         <label for="puntaje" class="block">Puntaje (1-10)</label>
-        <input type="range" id="puntaje" name="puntaje" min="1" max="10" />
+        <input type="range" id="puntaje" name="puntaje" min="1" max="10" required />
         <label for="comentarios" class="block">Comentarios</label>
-        <textarea rows="4" cols="50" id="comentarios" name="comentarios"></textarea>
+        <textarea rows="4" cols="50" id="comentarios" name="comentarios" required></textarea>
 
         <div class="py-10">
-          <input type="button" value="Agregar/Actualizar" />
+          <input type="submit" value="Agregar/Actualizar" />
           <input type="reset" value="Reset" />
         </div>
       </form>
 
       <h3 class="py-10">Opiniones ingresadas de la serie</h3>
-      <ul class="px-25">
-        <li>Temp 1: Cap 4: Puntaje: 10 El mejor capítulo, casi conquistan el mundo!</li>
+      <ul id="opinionesSeries" class="px-25">
       </ul>
     </section>
 
