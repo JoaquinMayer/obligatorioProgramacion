@@ -5,6 +5,7 @@ class Sistema {
 
     agregarSerie(serie) {
         this.series.push(serie)
+        console.log(this.series);
     }
 
     chequearSerie(nombre) {

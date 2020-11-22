@@ -1,179 +1,144 @@
 <!-- Joaquín Mayer (212667) | Agustín Tosar (206570) -->
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/estilos.css" />
-    <title>Gestión de Series</title>
-    <meta
-      name="description"
-      content="Sitio web para registro de series televisivas, opinion de distintos capítulos de las temporadas y estadisticas"
-    />
-  </head>
 
-  <body>
-    <header
-      class="header border-radius py-2 text-center font-ligth border-radius-tl border-radius-br"
-    >
-      <h1>Gestión de Series</h1>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/estilos.css" />
+  <title>Gestión de Series</title>
+  <meta name="description"
+    content="Sitio web para registro de series televisivas, opinion de distintos capítulos de las temporadas y estadisticas" />
+</head>
 
-    <nav class="nav w-100 w-tablet-20 float-left">
-      <ul>
-        <li>
-          <a class="bg-gradient-secondary border-radius-br" href="#series">Series</a>
-        </li>
-        <li>
-          <a class="bg-gradient-tertiary border-radius-br" href="#opiniones">Opiniones</a>
-        </li>
-        <li>
-          <a class="bg-gradient-primary border-radius-br" href="#estadisticas">Estadística</a>
-        </li>
-      </ul>
-    </nav>
+<body>
+  <header class="header border-radius py-2 text-center font-ligth border-radius-tl border-radius-br">
+    <h1>Gestión de Series</h1>
+  </header>
 
-    <main class="w-100 w-tablet-80 float-left">
-      <section id="series" class="bg-gradient-secondary border-radius-br px-1">
-        <h2 class="py-10">Manejo de Series</h2>
-        <form id="formSerie">
-          <label for="nombreSerie">Nombre</label><br />
-          <input
-            required
-            type="text"
-            name="nombreSerie"
-            id="nombreSerie"
-            placeholder="Nombre"
-            maxlength="30"
-          /><br />
-          <label for="descripcionSerie">Descripción</label><br />
-          <input
-            required
-            type="text"
-            name="descripcionSerie"
-            id="descripcionSerie"
-            placeholder="Descripción"
-            maxlength="30"
-          /><br />
-          <label for="cantidadTemp">Cantidad de temporadas</label><br />
-          <input
-            required
-            type="number"
-            name="cantidadTemp"
-            id="cantidadTemp"
-            min="1"
-            max="20"
-          /><br />
-          <label for="cantidadCap">Capítulos por temporada</label><br />
-          <input
-            required
-            type="number"
-            name="cantidadCap"
-            id="cantidadCap"
-            min="1"
-            max="30"
-          /><br />
-          <div class="py-10">
-            <input type="submit" value="Agregar/Actualizar" />
-            <input type="reset" value="Reset" />
-            <input type="button" value="Previo" />
-            <input type="button" value="Siguiente" />
-          </div>
-          <a id="imdb" href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer"
-            ><img src="./img/imdb-logo.jpg" alt="logo imdn" width="75"
-          /></a>
-        </form>
-      </section>
+  <nav class="nav w-100 w-tablet-20 float-left">
+    <ul>
+      <li onclick="mostrarSeccion('series')" class="pointer">
+        <a class="bg-gradient-secondary border-radius-br">Series</a>
+      </li>
+      <li onclick="mostrarSeccion('opiniones')" class="pointer">
+        <a class="bg-gradient-tertiary border-radius-br">Opiniones</a>
+      </li>
+      <li onclick="mostrarSeccion('estadisticas')" class="pointer">
+        <a class="bg-gradient-primary border-radius-br">Estadística</a>
+      </li>
+    </ul>
+  </nav>
 
-      <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
-        <h2 class="py-10">Datos sobre opiniones de visualización</h2>
+  <main class="w-100 w-tablet-80 float-left">
+    <section id="series" class="bg-gradient-secondary border-radius-br px-1">
+      <h2 class="py-10">Manejo de Series</h2>
+      <form id="formSerie">
+        <label for="nombreSerie">Nombre</label><br />
+        <input required type="text" name="nombreSerie" id="nombreSerie" placeholder="Nombre" maxlength="30" /><br />
+        <label for="descripcionSerie">Descripción</label><br />
+        <input required type="text" name="descripcionSerie" id="descripcionSerie" placeholder="Descripción"
+          maxlength="30" /><br />
+        <label for="cantidadTemp">Cantidad de temporadas</label><br />
+        <input required type="number" name="cantidadTemp" id="cantidadTemp" min="1" max="20" /><br />
+        <label for="cantidadCap">Capítulos por temporada</label><br />
+        <input required type="number" name="cantidadCap" id="cantidadCap" min="1" max="30" /><br />
+        <div class="py-10">
+          <input type="submit" value="Agregar/Actualizar" />
+          <input type="reset" value="Reset" />
+          <input type="button" value="Previo" />
+          <input type="button" value="Siguiente" />
+        </div>
+        <a id="imdb" href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer"><img
+            src="./img/imdb-logo.jpg" alt="logo imdn" width="75" /></a>
+      </form>
+    </section>
 
-        <form action="#">
-          <label for="opcionesSeries" class="block">Serie</label>
-          <select id="opcionesSeries" name="opcionesSeries">
-            <option value="friends">Friends</option>
-            <option value="pinkyCerebro" selected>Pinky y Cerebro</option>
-            <option value="superman">Superman</option>
-          </select>
-          <label for="temporada" class="block">Temporada</label>
-          <input class="number" id="temporada" type="number" min="1" />
-          <label for="capitulo" class="block">Capítulo</label>
-          <input class="number" id="capitulo" type="number" min="1" />
-          <label for="puntaje" class="block">Puntaje (1-10)</label>
-          <input type="range" id="puntaje" name="puntaje" min="1" max="10" />
-          <label for="comentarios" class="block">Comentarios</label>
-          <textarea rows="4" cols="50" id="comentarios" name="comentarios"></textarea>
+    <section id="opiniones" class="bg-gradient-tertiary border-radius-br px-1">
+      <h2 class="py-10">Datos sobre opiniones de visualización</h2>
 
-          <div class="py-10">
-            <input type="button" value="Agregar/Actualizar" />
-            <input type="reset" value="Reset" />
-          </div>
-        </form>
-
-        <h3 class="py-10">Opiniones ingresadas de la serie</h3>
-        <ul class="px-25">
-          <li>Temp 1: Cap 4: Puntaje: 10 El mejor capítulo, casi conquistan el mundo!</li>
-        </ul>
-      </section>
-
-      <section id="estadisticas" class="bg-gradient-primary border-radius-br px-1">
-        <h2 class="py-10">Información estadística</h2>
-        <p class="py-10">Series sin opiniones</p>
-        <ul class="px-25">
-          <li>Friends-Comedia de amigos (Temporadas: 12, capítulos: 8)</li>
-          <li>Superman-El hombre de acero (Temporadas: 14, capítulos: 15)</li>
-        </ul>
-
-        <p class="py-10">Top-3 Series con la máxima cantidad de opiniones</p>
-        <ul class="px-25">
-          <li>Pinky y Cerebro-Dibujo de dos ratones (Temporadas: 15, capítulos: 8)</li>
-        </ul>
-
-        <p class="py-10">Información general</p>
-        <p>Orden:</p>
-        <input type="radio" id="nombre" name="orden" value="nombre" checked />
-        <label for="nombre">Nombre de la serie</label>
-        <input type="radio" id="cantidad" name="orden" value="cantidad" />
-        <label for="cantidad">Cantidad de opiniones decreciente</label>
+      <form action="#">
+        <label for="opcionesSeries" class="block">Serie</label>
+        <select id="opcionesSeries" name="opcionesSeries">
+        </select>
+        <label for="temporada" class="block">Temporada</label>
+        <input class="number" id="temporada" type="number" min="1" />
+        <label for="capitulo" class="block">Capítulo</label>
+        <input class="number" id="capitulo" type="number" min="1" />
+        <label for="puntaje" class="block">Puntaje (1-10)</label>
+        <input type="range" id="puntaje" name="puntaje" min="1" max="10" />
+        <label for="comentarios" class="block">Comentarios</label>
+        <textarea rows="4" cols="50" id="comentarios" name="comentarios"></textarea>
 
         <div class="py-10">
-          <p class="text-center w-80">Información detallada</p>
-          <table class="table w-80">
-            <tr>
-              <th class="th">Serie</th>
-              <th class="th">Cantidad de opiniones</th>
-              <th class="th">Promedio general</th>
-            </tr>
-            <tr>
-              <td class="td">Friends</td>
-              <td class="td">0</td>
-              <td class="td"></td>
-            </tr>
-            <tr>
-              <td class="td">Pinky y Cerebro</td>
-              <td class="td">1</td>
-              <td class="td">10</td>
-            </tr>
-            <tr>
-              <td class="td">Superman</td>
-              <td class="td">0</td>
-              <td class="td"></td>
-            </tr>
-          </table>
+          <input type="button" value="Agregar/Actualizar" />
+          <input type="reset" value="Reset" />
         </div>
-      </section>
-    </main>
+      </form>
 
-    <footer
-      class="footer border-radius py-2 text-center font-ligth border-radius-tl border-radius-br clear"
-    >
-      <p>
-        Cátedra de Programación - Programación 1 - 2do semestre 2020 | Joaquín Mayer (212667) -
-        Agustín Tosar (206570)
-      </p>
-    </footer>
+      <h3 class="py-10">Opiniones ingresadas de la serie</h3>
+      <ul class="px-25">
+        <li>Temp 1: Cap 4: Puntaje: 10 El mejor capítulo, casi conquistan el mundo!</li>
+      </ul>
+    </section>
 
-    <script src="./js/clases.js"></script>
-    <script src="./js/funciones.js"></script>
-  </body>
+    <section id="estadisticas" class="bg-gradient-primary border-radius-br px-1">
+      <h2 class="py-10">Información estadística</h2>
+      <p class="py-10">Series sin opiniones</p>
+      <ul class="px-25">
+        <li>Friends-Comedia de amigos (Temporadas: 12, capítulos: 8)</li>
+        <li>Superman-El hombre de acero (Temporadas: 14, capítulos: 15)</li>
+      </ul>
+
+      <p class="py-10">Top-3 Series con la máxima cantidad de opiniones</p>
+      <ul class="px-25">
+        <li>Pinky y Cerebro-Dibujo de dos ratones (Temporadas: 15, capítulos: 8)</li>
+      </ul>
+
+      <p class="py-10">Información general</p>
+      <p>Orden:</p>
+      <input type="radio" id="nombre" name="orden" value="nombre" checked />
+      <label for="nombre">Nombre de la serie</label>
+      <input type="radio" id="cantidad" name="orden" value="cantidad" />
+      <label for="cantidad">Cantidad de opiniones decreciente</label>
+
+      <div class="py-10">
+        <p class="text-center w-80">Información detallada</p>
+        <table class="table w-80">
+          <tr>
+            <th class="th">Serie</th>
+            <th class="th">Cantidad de opiniones</th>
+            <th class="th">Promedio general</th>
+          </tr>
+          <tr>
+            <td class="td">Friends</td>
+            <td class="td">0</td>
+            <td class="td"></td>
+          </tr>
+          <tr>
+            <td class="td">Pinky y Cerebro</td>
+            <td class="td">1</td>
+            <td class="td">10</td>
+          </tr>
+          <tr>
+            <td class="td">Superman</td>
+            <td class="td">0</td>
+            <td class="td"></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer border-radius py-2 text-center font-ligth border-radius-tl border-radius-br clear">
+    <p>
+      Cátedra de Programación - Programación 1 - 2do semestre 2020 | Joaquín Mayer (212667) -
+      Agustín Tosar (206570)
+    </p>
+  </footer>
+
+  <script src="./js/clases.js"></script>
+  <script src="./js/funciones.js"></script>
+</body>
+
 </html>

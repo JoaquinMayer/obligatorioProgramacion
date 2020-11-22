@@ -5,6 +5,7 @@ var sistema = new Sistema()
 function inicio() {
     document.forms['formSerie'].addEventListener('submit', agregarSerie)
     document.getElementById('nombreSerie').addEventListener('keyup', updateUrlIMDB)
+    mostrarSeccion('series');
 }
 
 function agregarSerie(event) {
@@ -35,4 +36,38 @@ function updateUrlIMDB(event) {
     let anchorImdb = document.getElementById('imdb')
     let url = buildUrlImdb(event.target.value)
     anchorImdb.href = url
+}
+
+function mostrarSeccion(nombre) {
+
+    const secciones = ['series', 'opiniones', 'estadisticas'];
+
+    if (nombre == secciones[1]) {
+        cargarOpinionesSelect();
+    }
+
+    secciones.forEach(el => {
+        const show = el == nombre ? 'block' : 'none';
+        document.getElementById(el).style.display = show;
+    });
+
+}
+
+function cargarOpinionesSelect() {
+    let optionList = document.getElementById('opcionesSeries');
+
+    let i, listLength = optionList.options.length - 1;
+    for (i = listLength; i >= 0; i--) {
+        optionList.remove(i);
+    }
+
+    optionList.options.add(
+        new Option('Seleccione una serie', 'Seleccione una serie', true)
+    )
+
+    sistema.series.forEach(option =>
+        optionList.options.add(
+            new Option(option.nombre, option.nombre, option.selected)
+        )
+    );
 }
