@@ -117,20 +117,24 @@
   background-color: var(--primary-color);
 }
 
-.table {
+table {
   border: 1px solid black;
 }
 
-.th, .td {
+.th {
+  font-weight: 700;
+}
+.th,
+td {
   padding: 5px;
   border: 1px solid black;
   text-align: center;
 }
 
-input[type="number"] {
+input[type='number'] {
   width: 45px;
 }
 
-input[type="button"] {
+input[type='button'] {
   padding: 0 5px;
 }
