@@ -47,6 +47,8 @@ function mostrarSeccion(nombre) {
 
     if (nombre == secciones[1]) {
         cargarSeries();
+        cargarSerieInformacion();
+        document.getElementById('formOpinion').reset();
     }
 
     secciones.forEach(el => {
@@ -77,10 +79,13 @@ function cargarSeries() {
 
 function cargarSerieInformacion() {
 
-    const nombreSerie = document.getElementById("opcionesSeries").value;
+    let nombreSerie = document.getElementById("opcionesSeries").value;
+    let opinionList = document.getElementById('opinionesSeries');
+    opinionList.innerHTML = '';
 
-    if (nombreSerie && sistema.chequearSerie(nombreSerie)) {
-        serie = sistema.seriePorNombre(nombreSerie);
+    if (nombreSerie && sistema.chequearSerie(nombreSerie) >= 0) {
+        const idxSerie = sistema.chequearSerie(nombreSerie)
+        serie = sistema.series[idxSerie];
 
         let temporadas = document.getElementById("temporada");
         temporadas.setAttribute("max", serie.cantTemporadas);
@@ -88,13 +93,9 @@ function cargarSerieInformacion() {
         let capitulos = document.getElementById("capitulo");
         capitulos.setAttribute("max", serie.cantidadCap);
 
-        let opinionList = document.getElementById('opinionesSeries');
-
-        opinionList.innerHTML = '';
-
         serie.opiniones.forEach(opinion => {
             let li = document.createElement("li");
-            li.appendChild(document.createTextNode(`Temp: ${opinion.temporada} Cap: ${opinion.capitulo} Puntaje: ${opinion.puntaje}. ${opinion.comentarios}`));
+            li.appendChild(document.createTextNode(`Temp: ${opinion.temporada || '-'} Cap: ${opinion.capitulo || '-'} Puntaje: ${opinion.puntaje}. ${opinion.comentarios}`));
             opinionList.appendChild(li);
         });
     }
@@ -108,8 +109,9 @@ function agregarOpinion(event) {
     let puntaje = document.getElementById('puntaje').value;
     let comentarios = document.getElementById('comentarios').value;
 
-    if (nombreSerie && sistema.chequearSerie(nombreSerie)) {
-        serie = sistema.seriePorNombre(nombreSerie);
+    if (nombreSerie && sistema.chequearSerie(nombreSerie) >= 0) {
+        const idxSerie = sistema.chequearSerie(nombreSerie)
+        serie = sistema.series[idxSerie];
         const opinion = new Opinion(nombreSerie, temporada, capitulo, puntaje, comentarios);
 
         serie.agregarOpinion(opinion);

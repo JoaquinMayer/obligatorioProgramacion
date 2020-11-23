@@ -12,14 +12,6 @@ class Sistema {
             serie.nombre.toLowerCase() == nombre.toLowerCase()
         )
     }
-
-    seriePorNombre(nombre) {
-        let result = this.series.find(obj => {
-            return obj.nombre === nombre
-        })
-
-        return result;
-    }
 }
 
 class Serie {
@@ -33,7 +25,6 @@ class Serie {
     }
 
     agregarOpinion(opinion) {
-
         const idxOpinion = this.chequearOpinion(opinion.temporada, opinion.capitulo);
         if (idxOpinion == -1) {
             this.opiniones.push(opinion);
