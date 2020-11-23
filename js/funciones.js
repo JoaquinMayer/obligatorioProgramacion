@@ -87,7 +87,7 @@ function mostrarSeccion(nombre) {
 
     const secciones = ['series', 'opiniones', 'estadisticas'];
 
-    if (nombre == 'series') {
+    if (nombre == 'opiniones') {
         cargarSeries();
         cargarSerieInformacion();
         document.getElementById('formOpinion').reset();
