@@ -12,6 +12,48 @@ class Sistema {
             serie.nombre.toLowerCase() == nombre.toLowerCase()
         )
     }
+
+    seriesSinOpiniones() {
+        return this.series.filter(serie => serie.opiniones.length == 0)
+    }
+
+    topSeries() {
+        return this.series.sort(function (a, b) {
+            if (a.opiniones.length > b.opiniones.length) {
+                return -1;
+            }
+            if (a.opiniones.length < b.opiniones.length) {
+                return 1;
+            }
+            return 0;
+        }).filter(serie => serie.opiniones.length > 0).slice(0, 3);
+    }
+
+    ordenar(orden) {
+        if (orden == 'nombre') {
+            return this.series.sort(function (a, b) {
+                if (a.nombre > b.nombre) {
+                    return 1;
+                }
+                if (a.nombre < b.nombre) {
+                    return -1;
+                }
+                return 0;
+            });
+
+        } else {
+            return this.series.sort(function (a, b) {
+                if (a.opiniones.length > b.opiniones.length) {
+                    return -1;
+                }
+                if (a.opiniones.length < b.opiniones.length) {
+                    return 1;
+                }
+                return 0;
+            });
+
+        }
+    }
 }
 
 class Serie {
@@ -39,6 +81,15 @@ class Serie {
             opinion.temporada == temporada &&
             opinion.capitulo == capitulo
         )
+    }
+
+    promedioOpinion() {
+        let sum = 0
+        this.opiniones.forEach(opinion => {
+            sum += parseInt(opinion.puntaje)
+        })
+        let avg = sum / this.opiniones.length
+        return avg ? avg : ''
     }
 }
 

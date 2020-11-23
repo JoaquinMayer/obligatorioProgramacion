@@ -1,11 +1,16 @@
 window.addEventListener("load", inicio);
 
 var sistema = new Sistema()
+var indexSerie = sistema.series.length - 1
 
 function inicio() {
     document.forms['formSerie'].addEventListener('submit', agregarSerie)
+    document.forms['formSerie'].addEventListener('reset', resetSerie)
     document.forms['formOpinion'].addEventListener('submit', agregarOpinion)
     document.getElementById('nombreSerie').addEventListener('keyup', updateUrlIMDB)
+    document.getElementById('btnPrevioSeries').addEventListener('click', previaSerie)
+    document.getElementById('btnSiguienteSeries').addEventListener('click', siguienteSerie)
+    document.forms['tablaOrdenadas'].addEventListener('change', mostrarTabla)
     mostrarSeccion('series');
 }
 
@@ -26,6 +31,43 @@ function agregarSerie(event) {
         sistema.series[chequearSerie].cantTemporadas = cantTemporadas
         sistema.series[chequearSerie].cantidadCap = cantidadCap
     }
+    event.target.reset()
+    document.getElementById('imdb').href = 'https://www.imdb.com/'
+}
+
+function resetSerie(event) {
+    event.target.reset()
+    document.getElementById('imdb').href = 'https://www.imdb.com/'
+    document.getElementById('mensajeSeries').innerHTML = ''
+    indexSerie = -1;
+}
+
+function previaSerie() {
+    if (indexSerie > 0) {
+        indexSerie--
+        mostrarSerie(indexSerie)
+    } else if (sistema.series.length) {
+        indexSerie = sistema.series.length - 1
+        mostrarSerie(indexSerie)
+    }
+}
+
+function siguienteSerie() {
+    if (indexSerie != (sistema.series.length - 1)) {
+        indexSerie++
+        mostrarSerie(indexSerie)
+    } else if (sistema.series.length) {
+        indexSerie = 0
+        mostrarSerie(indexSerie)
+    }
+}
+
+function mostrarSerie(index) {
+    document.getElementById('nombreSerie').value = sistema.series[index].nombre
+    document.getElementById('descripcionSerie').value = sistema.series[index].descripcion
+    document.getElementById('cantidadTemp').value = sistema.series[index].cantTemporadas
+    document.getElementById('cantidadCap').value = sistema.series[index].cantidadCap
+    document.getElementById('imdb').href = buildUrlImdb(sistema.series[index].nombre)
 }
 
 function buildUrlImdb(nombre) {
@@ -45,10 +87,12 @@ function mostrarSeccion(nombre) {
 
     const secciones = ['series', 'opiniones', 'estadisticas'];
 
-    if (nombre == secciones[1]) {
+    if (nombre == 'series') {
         cargarSeries();
         cargarSerieInformacion();
         document.getElementById('formOpinion').reset();
+    } else if (nombre == 'estadisticas') {
+        cargarEstadisticas();
     }
 
     secciones.forEach(el => {
@@ -117,4 +161,67 @@ function agregarOpinion(event) {
         serie.agregarOpinion(opinion);
         cargarSerieInformacion();
     }
+}
+
+function cargarEstadisticas() {
+    cargarSeriesSinOpiniones()
+    cargarTopSeries()
+    mostrarTabla()
+}
+
+function cargarSeriesSinOpiniones() {
+    document.getElementById('seriesSinOpiniones').innerHTML = ''
+    let seriesSinOpiniones = sistema.seriesSinOpiniones()
+
+    seriesSinOpiniones.forEach(item => {
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(`${item.nombre} - ${item.descripcion} (Temporadas: ${item.cantTemporadas}, capítulos: ${item.cantidadCap})`);
+        node.appendChild(textnode);
+        document.getElementById("seriesSinOpiniones").appendChild(node);
+    })
+}
+
+function cargarTopSeries() {
+    document.getElementById('topSeries').innerHTML = ''
+    let topSeries = sistema.topSeries()
+
+    topSeries.forEach(item => {
+        var node = document.createElement("LI");
+        var textnode = document.createTextNode(`${item.nombre} - ${item.descripcion} (Temporadas: ${item.cantTemporadas}, capítulos: ${item.cantidadCap})`);
+        node.appendChild(textnode);
+        document.getElementById("topSeries").appendChild(node);
+    })
+}
+
+function mostrarTabla() {
+    let tabla = document.getElementById("tablaSeries");
+    let orden = document.querySelector('input[name="orden"]:checked').value;
+    let serieMostrar = sistema.ordenar(orden);
+
+    tabla.innerHTML = "";
+    if (serieMostrar.length == 0) {
+        tabla.innerHTML = "Sin datos";
+    }
+    else {
+        let header = tabla.createTHead();
+        let row = header.insertRow(0);
+        let cellSerie = row.insertCell();
+        cellSerie.classList.add("th");
+        cellSerie.innerHTML = "Serie";
+        let cellOpiniones = row.insertCell();
+        cellOpiniones.classList.add("th");
+        cellOpiniones.innerHTML = "Cantidad de opiniones";
+        let cellPromedio = row.insertCell();
+        cellPromedio.classList.add("th");
+        cellPromedio.innerHTML = "Promedio general";
+
+        for (let i = 0; i < serieMostrar.length; i++) {
+            let fila = tabla.insertRow();
+            let serie = serieMostrar[i];
+            fila.insertCell().innerHTML = serie.nombre
+            fila.insertCell().innerHTML = serie.opiniones.length
+            fila.insertCell().innerHTML = serie.promedioOpinion()
+        }
+    }
+
 }
