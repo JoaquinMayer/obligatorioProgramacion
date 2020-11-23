@@ -1,3 +1,4 @@
+// Joaquín Mayer (212667) | Agustín Tosar (206570)
 class Sistema {
     constructor() {
         this.series = []
